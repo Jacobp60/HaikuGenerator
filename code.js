@@ -2,7 +2,7 @@ $(document).ready(function(){
     $("button#add").click(addWord);
     $("button#generate").click(generateHaiku);
 });
-let syllables = [
+let words = [
     [],
     ["push", "dove", "eat", "sleep"],
     ["dampen", "lighten", "funny", "pickle","Rugby"],
@@ -18,19 +18,19 @@ function addWord() {
 
 
     let wordEntered = $("input#word").val();
-    let word = "";
-    let numDash = 1;
+    let newWord = "";
+    let numCount = 1;
     for (let i = 0; i < wordEntered.length; i++) {
-        let char = wordEntered[i];
-        if (char === "-") {
-            numDash++
+        let character = wordEntered[i];
+        if (character === "-") {
+            numCount++
         }else{
-            word += char;
-        } if (numDash > 7) {
+            newWord += character;
+        } if (numCount > 7) {
             $("p#errorM").text(`Sorry, that word has too many syllables for a haiku`);
         }
     }
-    syllables[numDash][syllables[numDash].length] = word;
+    words[numCount][words[numCount].length] = newWord;
 }
 
 function generateHaiku(){
@@ -52,9 +52,9 @@ function gen1and3() {
 
         }else{
             totalSyllables += random;
-            let innerArrayLength = syllables[random].length - 1;
+            let innerArrayLength = words[random].length - 1;
             let randomInner = Math.floor(Math.random()*innerArrayLength)+1;
-            line += syllables[random][randomInner] + " ";
+            line += words[random][randomInner] + " ";
         }
     }
     return line;
@@ -68,9 +68,9 @@ function genLine2(){
 
         }else{
             totalSyllables += random;
-            let innerArrayLength = syllables[random].length - 1;
+            let innerArrayLength = words[random].length - 1;
             let randomInner = Math.floor(Math.random()*innerArrayLength)+1;
-            line += syllables[random][randomInner] + " ";
+            line += words[random][randomInner] + " ";
         }
     }
     return line;
